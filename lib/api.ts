@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Note, CreateNotePayload } from '@/types/notes';
+import type { Note, CreateNotePayload } from '@/types/note';
 
 const accessKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
