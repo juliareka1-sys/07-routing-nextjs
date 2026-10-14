@@ -10,8 +10,8 @@ import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 import { fetchNotes } from '@/lib/api';
 
-interface NotesProps { 
-  tag: string
+interface NotesProps {
+  tag: string;
 }
 
 export default function NotesClient({ tag }: NotesProps) {

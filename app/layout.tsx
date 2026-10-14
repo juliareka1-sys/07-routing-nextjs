@@ -23,11 +23,12 @@ export const metadata: Metadata = {
     'NoteHub is a simple and efficient application designed for managing personal notes.',
 };
 
-interface RootLayoutProps{
+interface RootLayoutProps {
   children: ReactNode;
+  modal: ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Header />
 
           {children}
+          {modal}
 
           <Footer />
         </TanStackProvider>

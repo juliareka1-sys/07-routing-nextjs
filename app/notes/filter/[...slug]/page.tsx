@@ -7,11 +7,11 @@ import { fetchNotes } from '@/lib/api';
 import NotesClient from '@/app/notes/filter/[...slug]/Notes.client';
 
 interface SlugBox {
-  slug: string[]
+  slug: string[];
 }
 
-interface PropsFromNext{
-  params: Promise <SlugBox>
+interface PropsFromNext {
+  params: Promise<SlugBox>;
 }
 
 const Notes = async ({ params }: PropsFromNext) => {
@@ -20,7 +20,7 @@ const Notes = async ({ params }: PropsFromNext) => {
   const tagName = slugUnpack[0];
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ['notes', '', 1, tagName ],
+    queryKey: ['notes', '', 1, tagName],
     queryFn: () => fetchNotes('', 1, tagName),
   });
 
@@ -28,7 +28,7 @@ const Notes = async ({ params }: PropsFromNext) => {
 
   return (
     <HydrationBoundary state={dehydrated}>
-      <NotesClient tag = {tagName} />
+      <NotesClient tag={tagName} />
     </HydrationBoundary>
   );
 };

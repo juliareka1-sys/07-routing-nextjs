@@ -1,4 +1,3 @@
-
 import css from '@/app/Home.module.css';
 
 const Home = () => {
