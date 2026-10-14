@@ -1,5 +1,5 @@
 'use client';
-import css from '@/app/notes/NotesPage.module.css';
+import css from '@/app/notes/filter/[...slug]/NotesPage.module.css';
 import { useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useDebouncedCallback } from 'use-debounce';
@@ -10,14 +10,18 @@ import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 import { fetchNotes } from '@/lib/api';
 
-export default function NotesClient() {
+interface NotesProps { 
+  tag: string
+}
+
+export default function NotesClient({ tag }: NotesProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const notesQuery = useQuery({
-    queryKey: ['notes', searchQuery, page],
-    queryFn: () => fetchNotes(searchQuery, page),
+    queryKey: ['notes', searchQuery, page, tag],
+    queryFn: () => fetchNotes(searchQuery, page, tag),
     placeholderData: keepPreviousData,
   });
 

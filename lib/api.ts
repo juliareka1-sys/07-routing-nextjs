@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Note, CreateNotePayload } from '@/types/note';
+import type { Note, CreateNotePayload } from '@/types/notes';
 
 const accessKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
@@ -17,12 +17,14 @@ interface FetchNotesResponse {
 
 export const fetchNotes = async (
   searchQuery: string,
-  page: number
+  page: number,
+  tag?: string
 ): Promise<FetchNotesResponse> => {
   const response = await notehubApi.get<FetchNotesResponse>('/notes', {
     params: {
       search: searchQuery,
       page,
+      tag: tag === 'all' ? undefined : tag,
       perPage: 12,
     },
   });
